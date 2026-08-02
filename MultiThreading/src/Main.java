@@ -2,12 +2,12 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
 
-
     System.out.println("hello");
-
-    Printable p = new Printable();
-    Thread t = new Thread(p);
-    t.start();
+    for(int i = 1; i<=100; i++) {
+        IndividualNumberPrinter inp = new IndividualNumberPrinter(i);
+        Thread t = new Thread(inp);
+        t.start();
+    }
 
     System.out.println("Hello");
 
