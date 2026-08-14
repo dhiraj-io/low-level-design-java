@@ -11,6 +11,8 @@ public class client {
         //10 producer
         // 15 consumer
 
+
+
         Store store = new Store(10);
         for(int i = 0; i<10; i++)
         {

@@ -38,5 +38,6 @@ public class client {
             sum = sum + f.get();
         }
         System.out.println(sum);
+        es.shutdown();
     }
 }
