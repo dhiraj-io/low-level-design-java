@@ -27,9 +27,9 @@ public class sorter implements Callable<List<Integer>> {
         List<Integer> rightList = list.subList(mid, list.size());
 
         sorter leftSorter = new sorter(leftList, es);
-        sorter righSorter = new sorter(rightList, es);
+        sorter rightSorter = new sorter(rightList, es);
         Future<List<Integer>>  leftFuture = es.submit(leftSorter);
-        Future<List<Integer>>  rightFuture = es.submit(righSorter);
+        Future<List<Integer>>  rightFuture = es.submit(rightSorter);
 
         List<Integer> leftSorted = leftFuture.get();
         List<Integer> rightSorted = rightFuture.get();
