@@ -3,16 +3,30 @@ import factory.AiClientFactory;
 import factory.ClientFactoryProvider;
 import vectorClient.AiVectorClient;
 
+import java.util.List;
+
 public class ChatService {
 
     private AiChatClient aiChatClient;
     private AiVectorClient aiVectorClient;
+    private List<String> providers;
+    private AiClientFactory aiClientFactory;
 
-    public ChatService(String provider) {
-        // gets the right factory from registry — no if-else needed
-        AiClientFactory factory = ClientFactoryProvider.getAiClientFactory(provider);
-        this.aiChatClient = factory.getAiChatClient();
-        this.aiVectorClient = factory.getAiVectorClient();
+    public ChatService(List<String> providers) {
+        this.providers = providers;
+        for (String provider : providers) {
+            try {
+                aiClientFactory = ClientFactoryProvider.getAiClientFactory(provider);
+                this.aiChatClient = aiClientFactory.getAiChatClient();
+                this.aiVectorClient = aiClientFactory.getAiVectorClient();
+                break; // first provider that works — stop here
+            } catch (Exception e) {
+                System.out.println(provider + " unavailable, trying next...");
+            }
+        }
+        if (aiChatClient == null) {
+            throw new RuntimeException("No AI provider available");
+        }
     }
 
     public void chat(String prompt) {
