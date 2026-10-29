@@ -1,4 +1,6 @@
 package facade;
 
-public class PlaceOrderSubscriber {
+public interface PlaceOrderSubscriber {
+
+    public void onOrderPlaced(Order order);
 }

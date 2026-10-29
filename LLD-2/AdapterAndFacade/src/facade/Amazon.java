@@ -4,6 +4,14 @@ import java.util.UUID;
 
 public class Amazon {
 
+    public PlaceOrderFacade getPlaceOrderFacade() {
+        return placeOrderFacade;
+    }
+
+    public void setPlaceOrderFacade(PlaceOrderFacade placeOrderFacade) {
+        this.placeOrderFacade = placeOrderFacade;
+    }
+
     PlaceOrderFacade placeOrderFacade;
 
     public Amazon() {
